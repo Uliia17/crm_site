@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"   # порт на хості : порт у контейнері
+    env_file:
+      - .env
+    restart: on-failure
+    command: npm start
