@@ -8,6 +8,7 @@ import { apiRouter } from "./routers/api.router";
 import path from "node:path";
 import swaggerUI from "swagger-ui-express";
 import { swaggerDocument } from "./configs/swagger.config";
+import { createDefaultAdmin } from "./seed/createAdmin";
 
 const app = express();
 app.use(express.json());
@@ -48,6 +49,7 @@ const dbConnection = async () => {
 const start = async () => {
     try {
         await dbConnection();
+        await createDefaultAdmin();
         app.listen(config.PORT, () => {
             console.log(`Server listening on ${config.PORT}`);
         });
